@@ -24,7 +24,7 @@ export class List{
     createRow(obj, id){
         let row = $(`<div objid="${id}"></div>`)
         row.obj = obj // KEEP POINTER TO THE DATA OBJECT !
-        this.fillRow (row, obj)
+        this.fillRow (row, obj, id)
         return row
     }
 
