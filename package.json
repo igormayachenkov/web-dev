@@ -1,0 +1,21 @@
+{
+  "name": "web-dev",
+  "version": "1.0.0",
+  "description": "The common code for web development",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/igormayachenkov/web-dev.git"
+  },
+  "author": "Igor Mayachenkov",
+  "license": "ISC",
+  "files": ["src/*"],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "opuntia": "^0.13.0",
+    "jquery": "^3.6.0"
+  },
+  "scripts": {
+    "start": "node test-server.js"
+  }
+}
