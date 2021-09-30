@@ -1,0 +1,174 @@
+html{
+    padding:0px;
+    font-family: monospace;
+}
+body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2em 1fr 1fr;
+    grid-gap: 0.2em;
+    padding:0px;
+    width: 100vw;
+    height: 100vh;  
+    margin:0px;
+    background:#aaa;
+}
+header{
+    grid-column: 1/3;
+    text-align: center;
+    line-height: 2em;
+    vertical-align: middle;
+    background: #006;
+    color:#fff;
+    position:relative;
+}
+header .logo{
+    display: block;
+    position: absolute;
+    top: 0em; left:0em;
+    width: 2em;
+    height: 2em;
+    cursor:pointer;
+    /*clip-path: circle(40%);*/
+    fill:red;
+    stroke: yellow;
+}
+header .logo:hover{
+    fill:orange;
+}
+
+.panel-text{
+    background-color: lightgrey;
+    padding:0em;
+}
+.panel-viewer{
+    background-color: lightgrey;
+    padding:0em;
+}
+@media screen and (orientation:landscape){
+    .panel-text{
+        grid-column: 1;
+        grid-row:    2/4;
+    }
+    .panel-viewer{
+        grid-column: 2;
+        grid-row:    2/4;
+    }        
+}
+@media screen and (orientation:portrait){
+    .panel-text{
+        grid-column: 1/3;
+        grid-row:    2;
+    }
+    .panel-viewer{
+        grid-column: 1/3;
+        grid-row:    3;
+    }    
+}
+
+h1 {
+    font-size: 100%;
+    font-weight: normal;
+    background: #068;
+    color:#fff;
+    margin:0em;
+    padding:0.2em 1em;
+}
+
+
+.panel-text { position: relative;}
+.panel-text textarea{
+    font-family: monospace;
+    display: block;
+    position: absolute;
+    left: 0px;
+    right:0px;
+    top: 4em;
+    bottom:0px;
+    resize: none;
+}
+
+button:hover,
+input[type='file']:hover{
+  cursor: pointer;
+  color: blue;
+}
+
+/* MAIN LIST */
+.list{
+    padding: 0em;
+    background: #eee;
+}
+.list > div {
+    border-bottom: 1px solid #666;
+    margin-bottom: 0.3em;
+}
+.list > div.changed {
+    border: 1px solid red;
+}
+.list > div.node {
+    border: 1px solid red
+}
+.list > div.leaf {
+    border: 1px solid blue
+}
+
+.list > div.removed{display: none;}
+.show-removed .list > div.removed{display: block;}
+
+.list > div.removed .row-main{
+    color: #666;
+    text-decoration: line-through;
+}
+.list > div b{
+    font-weight: normal;
+}
+.list > div .row-main{
+    display: grid;
+    padding: 0.2em 0.2em;
+    cursor: pointer;
+}
+.list .expanded .row-main{
+    background: #fff;
+}
+.list .expanded .row-main:hover,
+.list .row-main:hover{
+    background: #fffacd;
+}
+.list .row-details{
+    background: #fff;
+    height: 0em;
+    padding: 0em 0.5em; /* vertical must be 0 */
+    overflow: hidden;
+    transition-property: height;
+    transition-duration: 0.5s;
+}
+.list .expanded > .row-details{
+    height: auto;
+    /*max-height: 5em;*/
+}
+.list .details > div{
+    padding: 1em;
+}
+
+/* COLUMNS */
+.sortOrders,
+.list .row-main {
+    grid-template-columns: 1fr 2em;
+}
+
+/* ROW ICONS */
+.row-icon {
+    display: block;
+    width:  1em;
+    height: 1em;
+    margin-left: 0.5em;
+    /*background-color: #ccc;*/
+    background-size: contain;
+    padding: 2px;
+    float: right;
+}
+.row-icon:hover{
+    background-color: #0bf;
+}
+.row-icon.locate  { background-image: url(locate.svg);}
