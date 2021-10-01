@@ -143,13 +143,22 @@ export class DynamicSortedList extends SortedList{
     //     this.applyChanges(changes)
     // }
 
-    //  - changes : Object or Map
+    //  - changes : Map
     applyChanges(changes){
         // Remove old changed state
         this.body.children().removeClass('changed')
         // Apply changes
         if(changes){
-            if(! (changes instanceof Map)) throw "DynamicSortedList.applyChanges() => Map is required"
+            // Verify input
+            if(! (changes instanceof Map)){
+                console.warn("DynamicSortedList.applyChanges() => Map is required")
+                let map = new Map()
+                for(let id in changes){
+                    map.set(id, changes[id])
+                }
+                changes = map
+            }
+            // Process changed objects
             let rows = new Map() // changed rows collection
             for(let [id, obj] of changes.entries()){
                 let rowOld = this.getRow(id)
