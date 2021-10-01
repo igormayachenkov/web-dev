@@ -149,9 +149,9 @@ export class DynamicSortedList extends SortedList{
         this.body.children().removeClass('changed')
         // Apply changes
         if(changes){
-            let rows = {} // changed rows collection
-            for(let id in changes){
-                let obj = changes[id]
+            if(! (changes instanceof Map)) throw "DynamicSortedList.applyChanges() => Map is required"
+            let rows = new Map() // changed rows collection
+            for(let [id, obj] of changes.entries()){
                 let rowOld = this.getRow(id)
                 let row = null
                 if(rowOld){
@@ -164,14 +164,14 @@ export class DynamicSortedList extends SortedList{
                 }
                 // Put in changed rows collection
                 if(row){
-                    rows[id] = row
+                    rows.set(id, row)
                     if(this.isLoaded) row.addClass('changed');
                 }
             }
 
             // Apply changes
-            for(let id in rows) 
-                this.rowsMap.set(id, rows[id]) // update/append  rows
+            for(let [id, obj] of rows.entries()) 
+                this.rowsMap.set(id, obj) // update/append  rows
             // Detach rows from the table
             this.body.children().detach()
             // Sort & Append
